@@ -22,7 +22,19 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="cactus\game_flowchart.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cactus\location.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="cactus\main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cactus\main_game.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cactus\user_interface.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="cactus\__init__.py">
