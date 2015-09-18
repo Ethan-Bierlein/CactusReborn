@@ -28,9 +28,6 @@
     <Compile Include="cactus\location.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="cactus\main.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="cactus\main_game.py">
       <SubType>Code</SubType>
     </Compile>

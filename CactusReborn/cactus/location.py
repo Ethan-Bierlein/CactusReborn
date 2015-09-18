@@ -49,7 +49,8 @@ class Location:
         This function takes user input, sanitizes it, and
         then checks to make sure that it's valid by checking
         it against the references. If it is valid, then the
-        referenced map key is returned.
+        referenced map key is returned. It it's invalid, then
+        the function returns None.
 
         Keyword arguments:
         prompt        -- The prompt to use with user input.
