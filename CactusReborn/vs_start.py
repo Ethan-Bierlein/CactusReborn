@@ -1,4 +1,4 @@
-"""
+﻿"""
 vs-start.py
 
 This is just a small helper file, to ensure that the

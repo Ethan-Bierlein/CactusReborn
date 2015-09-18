@@ -30,8 +30,8 @@ class Location:
         When the user "enters" a positions, this function will
         display the title, and position description.
         """
-        print(self.title)
         print("-" * len(self.title))
+        print(self.title)
         print(self.description_enter)
 
     def on_exit(self):
@@ -41,7 +41,7 @@ class Location:
         display the exit message, and a newline.
         """
         print(self.description_exit)
-        print("-" * len(self.title) + "\n")
+        print("-" * len(self.description_exit) + "\n")
 
     def get_user_input(self, prompt, error_message):
         """Get user input, and check to make sure it's valid.
@@ -55,7 +55,7 @@ class Location:
         prompt        -- The prompt to use with user input.
         error_message -- The error message to display when the input is invalid.
         """
-        user_input = re.sub(r"([^\s\w]|_)", input(prompt).strip())
+        user_input = re.sub(r"([^\s\w]|_)", "", input(prompt).strip()).lower()
         if user_input in self.references:
             return self.references[user_input]
 

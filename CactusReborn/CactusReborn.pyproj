@@ -45,11 +45,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="info\README.md" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="cactus\" />
-    <Folder Include="info\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
