@@ -6,6 +6,7 @@ a location, contained in a GameFlowchart class.
 """
 import re
 
+
 class Location:
     """Represents a location in a GameFlowchart map.
     
