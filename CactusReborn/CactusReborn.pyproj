@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>94468ed2-a5e2-4fc3-92f2-860eda723938</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>CactusReborn.py</StartupFile>
+    <StartupFile>vs_start.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,22 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CactusReborn.py" />
+    <Compile Include="cactus\main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="cactus\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vs_start.py">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="info\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="cactus\" />
+    <Folder Include="info\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
