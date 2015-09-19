@@ -5,25 +5,28 @@ The classes and methods in this file are used to describe
 a location, contained in a GameFlowchart class.
 """
 import re
+import sys
+import time
 
 
 class Location:
     """Represents a location in a GameFlowchart map.
     
     A location represents a "location" on the game's
-    map, and contains data like a title, references
+    map, and contains data like a title, locations
     to other positions, etc.
 
     Keyword arguments:
     title       -- The title of the position.
     description -- The description of the position.
-    references  -- A dictionary of possible inputs, and reference keys.
+    locations  -- A dictionary of possible inputs, and reference keys.
     """
-    def __init__(self, *, title, description_enter, description_exit, references):
+    def __init__(self, *, title, description_enter, description_exit, on_exit_function, locations):
         self.title = title
         self.description_enter = description_enter
         self.description_exit = description_exit
-        self.references = references
+        self.on_exit_function = on_exit_function
+        self.locations = locations
 
     def on_enter(self):
         """This function is run when the user enters.
@@ -35,6 +38,11 @@ class Location:
         print(self.title)
         print(self.description_enter)
 
+        if len(self.locations) != 0:
+            print("Locations: ", end="")
+            for key, value in self.locations.items():
+                print(key + ", ", end="")
+
     def on_exit(self):
         """This function is run when the user exits.
 
@@ -44,12 +52,16 @@ class Location:
         print(self.description_exit)
         print("-" * len(self.description_exit) + "\n")
 
-    def get_user_input(self, prompt, error_message):
+        if self.on_exit_function is not None:
+            time.sleep(5)
+            self.on_exit_function()
+
+    def get_user_input(self, prompt, error_message, case_sensitive, global_commands):
         """Get user input, and check to make sure it's valid.
 
         This function takes user input, sanitizes it, and
         then checks to make sure that it's valid by checking
-        it against the references. If it is valid, then the
+        it against the locations. If it is valid, then the
         referenced map key is returned. It it's invalid, then
         the function returns None.
 
@@ -57,9 +69,15 @@ class Location:
         prompt        -- The prompt to use with user input.
         error_message -- The error message to display when the input is invalid.
         """
-        user_input = re.sub(r"([^\s\w]|_)", "", input(prompt).strip()).lower()
-        if user_input in self.references:
-            return self.references[user_input]
+        if self.on_exit_function != sys.exit:
+            user_input = re.sub(r"([^\s\w]|_)", "", input("\n" + prompt).strip())
+            user_input = user_input.lower() if not case_sensitive else user_input
+            if user_input in self.locations:
+                return self.locations[user_input]
 
-        print(error_message)
-        return
+            elif user_input in global_commands:
+                global_commands[user_input]()
+                return
+
+            print(error_message)
+            return
