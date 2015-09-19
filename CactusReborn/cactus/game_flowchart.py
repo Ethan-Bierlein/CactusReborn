@@ -34,7 +34,7 @@ class GameFlowchart:
         """
         if reference in self.references:
             return self.references[reference]
-        return None
+        return
 
     def find_start(self):
         """Returns the "starting position" in the references.
@@ -49,4 +49,4 @@ class GameFlowchart:
         for key, item in self.references.items():
             if re.sub(r"([^\s\w]|_)", "", key) == "start":
                 return self.references[item]
-        return None
+        return
