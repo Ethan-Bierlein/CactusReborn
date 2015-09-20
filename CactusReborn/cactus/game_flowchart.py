@@ -17,14 +17,10 @@ class GameFlowchart:
     each position.
 
     Keyword arguments:
-    locations -- A dictionary of socks.
+    locations -- A dictionary of locations representing the "map".
     """
     def __init__(self, *, locations):
         self.locations = locations
-
-    def iterate_locations(self):
-        for key, value in self.locations:
-            yield (key, value)
 
     def find_by_reference(self, reference):
         """Find, and obtain the value of a position, by reference.

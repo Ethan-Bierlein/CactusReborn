@@ -28,10 +28,10 @@ def play_game(*, name, description, prompt, flowchart, case_sensitive, error_mes
         while True:
             current_location.on_enter()
             new_key = current_location.get_user_input(prompt, error_message, case_sensitive, global_commands)
+            current_location.on_exit()
 
             if new_key is not None:
                 if new_key in flowchart.locations:
-                    current_location.on_exit()
                     current_location = flowchart.locations[new_key]
                 else:
                     raise KeyError("Invalid location key \"{0}\"".format(new_key))

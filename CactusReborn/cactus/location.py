@@ -21,11 +21,11 @@ class Location:
     description -- The description of the position.
     locations  -- A dictionary of possible inputs, and reference keys.
     """
-    def __init__(self, *, title, description_enter, description_exit, on_exit_function, locations):
+    def __init__(self, *, title, description_enter, description_exit, is_exit, locations):
         self.title = title
         self.description_enter = description_enter
         self.description_exit = description_exit
-        self.on_exit_function = on_exit_function
+        self.is_exit = is_exit
         self.locations = locations
 
     def on_enter(self):
@@ -34,14 +34,16 @@ class Location:
         When the user "enters" a positions, this function will
         display the title, and position description.
         """
-        print("-" * len(self.title))
-        print(self.title)
+        print("\n" + self.title)
         print(self.description_enter)
 
         if len(self.locations) != 0:
-            print("Locations: ", end="")
-            for key, value in self.locations.items():
-                print(key + ", ", end="")
+            print("Locations: {}".format(", ".join(self.locations)))
+
+        if self.is_exit:
+            print(self.description_exit + "\n")
+            time.sleep(5)
+            sys.exit(0)
 
     def on_exit(self):
         """This function is run when the user exits.
@@ -49,12 +51,7 @@ class Location:
         When the user "exits" as position, this function will
         display the exit message, and a newline.
         """
-        print(self.description_exit)
-        print("-" * len(self.description_exit) + "\n")
-
-        if self.on_exit_function is not None:
-            time.sleep(5)
-            self.on_exit_function()
+        print(self.description_exit + "\n")
 
     def get_user_input(self, prompt, error_message, case_sensitive, global_commands):
         """Get user input, and check to make sure it's valid.
@@ -69,8 +66,8 @@ class Location:
         prompt        -- The prompt to use with user input.
         error_message -- The error message to display when the input is invalid.
         """
-        if self.on_exit_function != sys.exit:
-            user_input = re.sub(r"([^\s\w]|_)", "", input("\n" + prompt).strip())
+        if not self.is_exit:
+            user_input = re.sub(r"([^\s\w]|_)", "", input(prompt).strip())
             user_input = user_input.lower() if not case_sensitive else user_input
             if user_input in self.locations:
                 return self.locations[user_input]

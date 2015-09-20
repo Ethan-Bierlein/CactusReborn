@@ -13,6 +13,8 @@ class/function names with "cactus".
 import sys
 import cactus
 
+def bar():
+    print("foo")
 
 FLOWCHART = cactus.game_flowchart.GameFlowchart(
     locations={
@@ -20,7 +22,7 @@ FLOWCHART = cactus.game_flowchart.GameFlowchart(
             title="The Shire",
             description_enter="As you enter the Shire, you are surrounded by the endless rolling hills.",
             description_exit="As you leave the Shire, you look back and wish that you could stay longer.",
-            on_exit_function=None,
+            is_exit=False,
             locations={
                 "mordor": "mordor",
                 "laketown": "laketown"
@@ -30,14 +32,14 @@ FLOWCHART = cactus.game_flowchart.GameFlowchart(
             title="Mordor",
             description_enter="As you enter Mordor, the Dark Lord Sauron spots you and kills you.",
             description_exit="As you pass out of Arda, you reflect on your bad decision.",
-            on_exit_function=sys.exit,
+            is_exit=True,
             locations={}
         ),
         "laketown": cactus.location.Location(
             title="Laketown",
             description_enter="As soon as you enter Laketown, you realize that there is no Laketown.",
             description_exit="You leave Laketown, disappointed.",
-            on_exit_function=sys.exit,
+            is_exit=True,
             locations={}
         )
     }
@@ -51,6 +53,6 @@ cactus.main_game.play_game(
     case_sensitive=False,
     error_message="Enter the correct input!",
     global_commands={
-        "exit": sys.exit
+        "!exit": sys.exit
     }
 )
