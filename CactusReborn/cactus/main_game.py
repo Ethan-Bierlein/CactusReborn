@@ -20,6 +20,8 @@ def play_game(*, name, description, prompt, flowchart, case_sensitive, error_mes
     error_message   -- The message to display when the user enters invalid input.
     global_commands -- Global commands that can be executed anywhere.
     """
+    print(name)
+    print(description)
     current_location = flowchart.find_start()
     
     if current_location is not None:
