@@ -20,18 +20,24 @@ def play_game(*, name, description, prompt, flowchart, case_sensitive, error_mes
     error_message   -- The message to display when the user enters invalid input.
     global_commands -- Global commands that can be executed anywhere.
     """
-    print(name)
-    print(description)
+    print(name + ":")
+    print(description + "\n")
+
     current_location = flowchart.find_start()
+    invalid_input = False
     
     if current_location is not None:
         while True:
-            current_location.on_enter()
+            if not invalid_input:
+                current_location.on_enter()
             new_key = current_location.get_user_input(prompt, error_message, case_sensitive, global_commands)
-            current_location.on_exit()
 
             if new_key is not None:
+                invalid_input = False
+                current_location.on_exit()
                 if new_key in flowchart.locations:
                     current_location = flowchart.locations[new_key]
                 else:
                     raise KeyError("Invalid location key \"{0}\"".format(new_key))
+            else:
+                invalid_input = True

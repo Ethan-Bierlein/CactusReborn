@@ -34,14 +34,14 @@ class Location:
         When the user "enters" a positions, this function will
         display the title, and position description.
         """
-        print("\n" + self.title)
-        print(self.description_enter)
+        print("\n" + self.title + ":")
+        print("-- " + self.description_enter)
 
-        if len(self.locations) != 0:
-            print("Locations: {}".format(", ".join(self.locations)))
+        if len(self.locations) != 0 and not self.is_exit:
+            print("-- Locations: {}".format(", ".join(self.locations)))
 
         if self.is_exit:
-            print(self.description_exit + "\n")
+            print("-- " + self.description_exit + "\n")
             time.sleep(5)
             sys.exit(0)
 
@@ -51,7 +51,7 @@ class Location:
         When the user "exits" as position, this function will
         display the exit message, and a newline.
         """
-        print(self.description_exit + "\n")
+        print("-- " + self.description_exit + "\n")
 
     def get_user_input(self, prompt, error_message, case_sensitive, global_commands):
         """Get user input, and check to make sure it's valid.
