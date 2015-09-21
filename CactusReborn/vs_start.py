@@ -13,9 +13,6 @@ class/function names with "cactus".
 import sys
 import cactus
 
-def bar():
-    print("foo")
-
 FLOWCHART = cactus.game_flowchart.GameFlowchart(
     locations={
         "start": cactus.location.Location(
