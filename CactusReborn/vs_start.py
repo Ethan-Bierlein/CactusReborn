@@ -13,6 +13,7 @@ class/function names with "cactus".
 import sys
 import cactus
 
+
 FLOWCHART = cactus.game_flowchart.GameFlowchart(
     locations={
         "start": cactus.location.Location(
