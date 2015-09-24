@@ -8,8 +8,10 @@ wrap it up in a nice container, ready to play.
 import sys
 
 
-def play_game(*, name, description, prompt, flowchart, case_sensitive, error_message, global_commands):
-    """Play a user-created game.
+class MainGame:
+    """Represents a game in Cactus.
+
+    This class represents a game in Cactus.
 
     Keyword arguments:
     name            -- The name of the game.
@@ -20,24 +22,42 @@ def play_game(*, name, description, prompt, flowchart, case_sensitive, error_mes
     error_message   -- The message to display when the user enters invalid input.
     global_commands -- Global commands that can be executed anywhere.
     """
-    print(name + ":")
-    print(description + "\n")
+    def __init__(self, *, name, description, prompt, flowchart, case_sensitive, error_message, global_commands):
+        self.name = name
+        self.description = description
+        self.prompt = prompt
+        self.flowchart = flowchart
+        self.case_sensitive = case_sensitive
+        self.error_message = error_message
+        self.global_commands = global_commands
 
-    current_location = flowchart.find_start()
-    invalid_input = False
+    def play_game(self):
+        """Play the user-created game.
+
+        This function does as the name describes, it plays the
+        user-created MainGame instance.
+        """
+        print(self.name + ":")
+        print(self.description + "\n")
+
+        current_location = self.flowchart.find_start()
+        invalid_input = False
     
-    if current_location is not None:
-        while True:
-            if not invalid_input:
-                current_location.on_enter()
-            new_key = current_location.get_user_input(prompt, error_message, case_sensitive, global_commands)
+        if current_location is not None:
+            while True:
+                if not invalid_input:
+                    current_location.on_enter()
 
-            if new_key is not None:
-                invalid_input = False
-                current_location.on_exit()
-                if new_key in flowchart.locations:
-                    current_location = flowchart.locations[new_key]
+                new_key = current_location.get_user_input(
+                    self.prompt, self.error_message, self.case_sensitive, self.global_commands
+                )
+
+                if new_key is not None:
+                    invalid_input = False
+                    current_location.on_exit()
+                    if new_key in self.flowchart.locations:
+                        current_location = self.flowchart.locations[new_key]
+                    else:
+                        raise KeyError("Invalid location key \"{0}\"".format(new_key))
                 else:
-                    raise KeyError("Invalid location key \"{0}\"".format(new_key))
-            else:
-                invalid_input = True
+                    invalid_input = True

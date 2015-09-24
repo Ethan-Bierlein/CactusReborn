@@ -43,7 +43,7 @@ FLOWCHART = cactus.game_flowchart.GameFlowchart(
     }
 )
 
-cactus.main_game.play_game(
+MAIN_GAME = cactus.main_game.MainGame(
     name="LOTR Quest",
     description="Some dumb LOTR quest.",
     prompt="> ",
@@ -54,3 +54,5 @@ cactus.main_game.play_game(
         "!exit": sys.exit
     }
 )
+
+MAIN_GAME.play_game()
