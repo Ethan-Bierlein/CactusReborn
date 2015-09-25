@@ -22,13 +22,22 @@ class MainGame:
     error_message   -- The message to display when the user enters invalid input.
     global_commands -- Global commands that can be executed anywhere.
     """
-    def __init__(self, *, name, description, prompt, flowchart, case_sensitive, error_message, global_commands):
+    def __init__(self, *, 
+                 name, 
+                 description, 
+                 prompt, 
+                 flowchart, 
+                 case_sensitive, 
+                 error_message,
+                 global_command_starting_char,
+                 global_commands):
         self.name = name
         self.description = description
         self.prompt = prompt
         self.flowchart = flowchart
         self.case_sensitive = case_sensitive
         self.error_message = error_message
+        self.global_command_starting_char = global_command_starting_char
         self.global_commands = global_commands
 
     def play_game(self):
@@ -49,7 +58,11 @@ class MainGame:
                     current_location.on_enter()
 
                 new_key = current_location.get_user_input(
-                    self.prompt, self.error_message, self.case_sensitive, self.global_commands
+                    self.prompt, 
+                    self.error_message, 
+                    self.case_sensitive, 
+                    self.global_command_starting_char, 
+                    self.global_commands
                 )
 
                 if new_key is not None:

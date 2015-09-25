@@ -52,7 +52,12 @@ class Location:
         """
         print("-- " + self.description_exit + "\n")
 
-    def get_user_input(self, prompt, error_message, case_sensitive, global_commands):
+    def get_user_input(self, 
+                       prompt, 
+                       error_message, 
+                       case_sensitive, 
+                       global_command_starting_char, 
+                       global_commands):
         """Get user input, and check to make sure it's valid.
 
         This function takes user input, sanitizes it, and
@@ -71,8 +76,9 @@ class Location:
             if user_input in self.locations:
                 return self.locations[user_input]
 
-            elif user_input in global_commands and user_input.startswith("!!"):
-                global_commands[user_input.strip("!!")]()
+            elif user_input.strip("!!") in global_commands \
+            and user_input.startswith(global_command_starting_char):
+                global_commands[user_input.strip(global_command_starting_char)]()
                 return
 
             print(error_message)

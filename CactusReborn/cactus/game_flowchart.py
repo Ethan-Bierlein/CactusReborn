@@ -47,6 +47,6 @@ class GameFlowchart:
         if the item is not found.
         """
         for key, item in self.locations.items():
-            if re.sub(r"([^\s\w]|_)", "", key) == "start":
+            if re.sub(r"([^\s\w]|_)", "", key).lower() == "start":
                 return self.locations[key]
         return

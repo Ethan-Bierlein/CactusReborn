@@ -50,8 +50,9 @@ MAIN_GAME = cactus.main_game.MainGame(
     flowchart=FLOWCHART,
     case_sensitive=False,
     error_message="Enter the correct input!",
+    global_command_starting_char="!!",
     global_commands={
-        "!!exit": sys.exit
+        "exit": sys.exit
     }
 )
 
