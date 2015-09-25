@@ -51,7 +51,7 @@ MAIN_GAME = cactus.main_game.MainGame(
     case_sensitive=False,
     error_message="Enter the correct input!",
     global_commands={
-        "!exit": sys.exit
+        "!!exit": sys.exit
     }
 )
 

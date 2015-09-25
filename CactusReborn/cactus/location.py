@@ -4,7 +4,6 @@ location.py
 The classes and methods in this file are used to describe
 a location, contained in a GameFlowchart class.
 """
-import re
 import sys
 import time
 
@@ -67,13 +66,13 @@ class Location:
         error_message -- The error message to display when the input is invalid.
         """
         if not self.is_exit:
-            user_input = re.sub(r"([^\s\w]|_)", "", input(prompt).strip())
+            user_input = input(prompt).strip()
             user_input = user_input.lower() if not case_sensitive else user_input
             if user_input in self.locations:
                 return self.locations[user_input]
 
-            elif user_input in global_commands:
-                global_commands[user_input]()
+            elif user_input in global_commands and user_input.startswith("!!"):
+                global_commands[user_input.strip("!!")]()
                 return
 
             print(error_message)
