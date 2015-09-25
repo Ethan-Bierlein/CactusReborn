@@ -34,6 +34,9 @@
     <Compile Include="cactus\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="setup.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="vs_start.py">
       <SubType>Code</SubType>
     </Compile>
