@@ -10,3 +10,4 @@ type out every single name, from each individual file.
 from .location import *
 from .game_flowchart import *
 from .main_game import *
+from .player import *

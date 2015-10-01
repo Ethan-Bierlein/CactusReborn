@@ -31,6 +31,9 @@
     <Compile Include="cactus\main_game.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="cactus\player.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="cactus\__init__.py">
       <SubType>Code</SubType>
     </Compile>
