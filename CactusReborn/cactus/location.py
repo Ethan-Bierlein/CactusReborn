@@ -20,11 +20,12 @@ class Location:
     description -- The description of the position.
     locations  -- A dictionary of possible inputs, and reference keys.
     """
-    def __init__(self, *, title, description_enter, description_exit, is_exit, locations):
+    def __init__(self, *, title, description_enter, description_exit, is_exit, access_items, locations):
         self.title = title
         self.description_enter = description_enter
         self.description_exit = description_exit
         self.is_exit = is_exit
+        self.access_items = access_items
         self.locations = locations
 
     def on_enter(self):

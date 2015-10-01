@@ -29,6 +29,7 @@ class MainGame:
                  flowchart, 
                  case_sensitive, 
                  error_message,
+                 player_object,
                  global_command_starting_char,
                  global_commands):
         self.name = name
@@ -37,6 +38,7 @@ class MainGame:
         self.flowchart = flowchart
         self.case_sensitive = case_sensitive
         self.error_message = error_message
+        self.player_object = player_object
         self.global_command_starting_char = global_command_starting_char
         self.global_commands = global_commands
 
@@ -47,7 +49,8 @@ class MainGame:
         user-created MainGame instance.
         """
         print(self.name + ":")
-        print(self.description + "\n")
+        print(self.description)
+        print("Player name: " + self.player_object.name + "\n")
 
         current_location = self.flowchart.find_start()
         invalid_input = False
@@ -68,8 +71,20 @@ class MainGame:
                 if new_key is not None:
                     invalid_input = False
                     current_location.on_exit()
+
                     if new_key in self.flowchart.locations:
-                        current_location = self.flowchart.locations[new_key]
+                        new_location = self.flowchart.locations[new_key]
+
+                        if new_location.access_items is not None:
+                            if self.player_object.contains_item(new_location.access_items):
+                                current_location = new_location
+                            else:
+                                print("Your player requires the items \"{}\" to proceed.".format(
+                                    self.flowchart.locations[new_key].access_items
+                                ))
+                                invalid_input = True
+                        else:
+                            current_location = new_location
                     else:
                         raise KeyError("Invalid location key \"{0}\"".format(new_key))
                 else:

@@ -20,7 +20,7 @@ class Player:
         self.name = name
         self.items = items
 
-    def contains_item(self, *, item_name, required_count):
+    def contains_item(self, items):
         """Check to see if the player has a certain item.
 
         This will check to see if a certain item is
@@ -34,8 +34,14 @@ class Player:
         item_name      -- The name of the item to find.
         required_count -- The required number of items to have.
         """
-        if item_name in self.items:
-            if self.items[item_name] >= required_count:
-                return True
-        else:
+        if items is not None and self.items:
+            for item, count in items.items():
+                if item in self.items:
+                    if self.items[item] >= items[item]:
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
             return False
+        return False

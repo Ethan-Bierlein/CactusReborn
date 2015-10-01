@@ -21,6 +21,7 @@ FLOWCHART = cactus.game_flowchart.GameFlowchart(
             description_enter="As you enter the Shire, you are surrounded by the endless rolling hills.",
             description_exit="As you leave the Shire, you look back and wish that you could stay longer.",
             is_exit=False,
+            access_items=None,
             locations={
                 "mordor": "mordor",
                 "laketown": "laketown"
@@ -31,6 +32,9 @@ FLOWCHART = cactus.game_flowchart.GameFlowchart(
             description_enter="As you enter Mordor, the Dark Lord Sauron spots you and kills you.",
             description_exit="As you pass out of Arda, you reflect on your bad decision.",
             is_exit=True,
+            access_items={
+                "sword": 1
+            },
             locations={}
         ),
         "laketown": cactus.location.Location(
@@ -38,6 +42,7 @@ FLOWCHART = cactus.game_flowchart.GameFlowchart(
             description_enter="As soon as you enter Laketown, you realize that there is no Laketown.",
             description_exit="You leave Laketown, disappointed.",
             is_exit=True,
+            access_items=None,
             locations={}
         )
     }
@@ -50,6 +55,10 @@ MAIN_GAME = cactus.main_game.MainGame(
     flowchart=FLOWCHART,
     case_sensitive=False,
     error_message="Enter the correct input!",
+    player_object=cactus.player.Player(
+        name="Aramorn",
+        items=None
+    ),
     global_command_starting_char="!!",
     global_commands={
         "exit": sys.exit
