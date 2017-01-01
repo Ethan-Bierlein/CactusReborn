@@ -6,7 +6,7 @@ project will actually build and run in Visual Studio.
 This file will not be included in the releases. This
 is also where tests of the library will be performed.
 
-FYI: I'm choosing to be explicity with the name
+FYI: I'm choosing to be explicit with the name
 references, but in reality you only need to prefix
 class/function names with "cactus".
 """
